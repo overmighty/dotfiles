@@ -1,0 +1,120 @@
+[colors]
+focused = #bcecff
+urgent = #ffdb9e
+foreground = #ffffff
+
+[bar/bar]
+bottom = true
+
+width = 100%
+height = 30
+
+background = #00000000
+foreground = ${colors.foreground}
+
+radius = 0.0
+
+line-size = 1
+
+padding-left = 1
+padding-right = 2
+
+module-margin = 1
+
+font-0 = monospace:pixelsize=10
+font-1 = Font Awesome 5 Free Solid:pixelsize=10
+
+modules-left = workspaces focused_window_title
+modules-center = cpu memory disk
+modules-right = network volume date
+
+separator = %{F#4a4a4a}|%{F-}
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+[settings]
+screenchange-reload = true
+
+[module/workspaces]
+type = internal/i3
+
+index-sort = true
+
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+
+format = <label-state> <label-mode>
+
+label-mode = %{F#4a4a4a}|%{F-} %{F#bcecff}%mode%%{F-}
+
+label-focused = %name%
+label-focused-foreground = ${colors.focused}
+label-focused-underline = ${colors.focused}
+label-focused-padding = 1
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = 1
+
+label-visible = %name%
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 1
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.urgent}
+label-urgent-underline = ${colors.urgent}
+label-urgent-padding = 1
+
+[module/focused_window_title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 30
+
+[module/cpu]
+type = internal/cpu
+label = %percentage% %
+
+[module/memory]
+type = internal/memory
+interval = 1
+label = %gb_free%
+
+[module/disk]
+type = internal/fs
+mount-0 = /
+interval = 10
+label-mounted = %free%
+
+[module/network]
+type = internal/network
+interface = wlp5s0
+format-connected = 
+label-disconnected = 
+
+[module/volume]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+use-ui-max = false
+
+format-volume = <label-volume> <ramp-volume>
+
+label-muted = 
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/date]
+type = internal/date
+
+date = %a, %b %d
+date-alt = %A, %B %d, %Y
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label = %date% %{F#4a4a4a}| %{F-}%time%

@@ -1,0 +1,170 @@
+* {
+    background:                  #1a1a1a;
+    foreground:                  #ffffff;
+
+    normal-background:           #00000000;
+    normal-foreground:           @foreground;
+    selected-normal-background:  #bcecff20;
+    selected-normal-foreground:  #bcecff;
+    alternate-normal-background: @normal-background;
+    alternate-normal-foreground: @normal-foreground;
+
+    urgent-background:           #ffdb9e20;
+    urgent-foreground:           @foreground;
+    selected-urgent-background:  @urgent-background;
+    selected-urgent-foreground:  #ffdb9e;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+
+    active-background:           @selected-normal-background;
+    active-foreground:           @foreground;
+    selected-active-background:  @selected-normal-background;
+    selected-active-foreground:  @selected-normal-foreground;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+
+    separatorcolor:              #bcecff;
+    background-color:            #00000000;
+    border-color: @selected-normal-foreground;
+}
+
+window {
+    background-color: @background;
+    border:           2;
+    font:             "monospace 14";
+    fullscreen:       false;
+    padding:          24;
+    width:            600;
+}
+
+mainbox {
+    padding: 0;
+    border:  0;
+}
+
+message {
+    padding:      10px;
+    border-color: @separatorcolor;
+    border:       2px dash 0px 0px;
+}
+
+textbox {
+    text-color: @foreground;
+}
+
+listview {
+    padding:      2px 0px 0px;
+    scrollbar:    false;
+    border-color: @separatorcolor;
+    spacing:      2px;
+    fixed-height: 0;
+    border:       2px dash 0px 0px;
+    lines: 5;
+}
+
+element {
+    padding: 10px;
+    border:  0;
+}
+
+element normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+element selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+element alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+element alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+element alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+scrollbar {
+    width:        4px;
+    padding:      0;
+    handle-width: 8px;
+    border:       0;
+    handle-color: @normal-foreground;
+}
+
+sidebar {
+    border-color: @separatorcolor;
+    border:       2px dash 0px 0px;
+}
+
+button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+button selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+inputbar {
+    padding:    10px;
+    spacing:    0px;
+    text-color: @normal-foreground;
+    children:   [ prompt, textbox-prompt-colon, entry, case-indicator ];
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+textbox-prompt-colon {
+    margin:     0px 0.3000em 0.0000em 0.0000em;
+    expand:     false;
+    str:        ":";
+    text-color: inherit;
+}
+
+error-message {
+    background-color: rgba(0, 0, 0, 0%);
+    text-color:       @normal-foreground;
+}
