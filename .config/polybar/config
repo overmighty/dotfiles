@@ -111,8 +111,8 @@ ramp-volume-2 = 
 [module/date]
 type = internal/date
 
-date = %a, %b %d
-date-alt = %A, %B %d, %Y
+date = %a, %b %e
+date-alt = %A, %B %e, %Y
 
 time = %H:%M
 time-alt = %H:%M:%S
