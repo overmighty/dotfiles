@@ -31,7 +31,7 @@
 window {
     background-color: @background;
     border:           1;
-    font:             "monospace 14";
+    font:             "sans-serif 14";
     fullscreen:       false;
     padding:          24;
     width:            600;
