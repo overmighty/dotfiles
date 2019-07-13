@@ -30,7 +30,7 @@
 
 window {
     background-color: @background;
-    border:           2;
+    border:           1;
     font:             "monospace 14";
     fullscreen:       false;
     padding:          24;
@@ -45,7 +45,7 @@ mainbox {
 message {
     padding:      10px;
     border-color: @separatorcolor;
-    border:       2px dash 0px 0px;
+    border:       1px dash 0px 0px;
 }
 
 textbox {
@@ -58,8 +58,8 @@ listview {
     border-color: @separatorcolor;
     spacing:      2px;
     fixed-height: 0;
-    border:       2px dash 0px 0px;
-    lines: 5;
+    border:       1px dash 0px 0px;
+    lines:        5;
 }
 
 element {
@@ -139,7 +139,7 @@ inputbar {
     padding:    10px;
     spacing:    0px;
     text-color: @normal-foreground;
-    children:   [ prompt, textbox-prompt-colon, entry, case-indicator ];
+    children:   [prompt, textbox-prompt-colon, entry, case-indicator];
 }
 
 case-indicator {

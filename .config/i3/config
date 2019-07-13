@@ -152,10 +152,10 @@ client.urgent           $urgent     $urgent     $foreground $urgent     $urgent
 
 gaps inner 16
 
-for_window [ class="^.*" ] border pixel 2
-for_window [ title="Minecraft *" ] floating enable
+for_window [class="^.*"] border pixel 1
+for_window [title="Minecraft *"] floating enable
 # Disable window borders for pinned flameshot screenshots
-for_window [ class="flameshot" ] border pixel 0
+for_window [class="flameshot"] border pixel 0
 
 exec_always --no-startup-id feh --bg-fill $HOME/wallpaper.jpg
 exec --no-startup-id compton --config $HOME/.config/compton.conf
