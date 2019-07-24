@@ -1,6 +1,3 @@
-# Some parts of this file were copied from simoniz0r's .zshrc
-# Link: https://github.com/simoniz0r/dotfiles/blob/master/.zshrc
-
 setopt no_nullglob
 setopt no_nomatch
 setopt PROMPT_SUBST
@@ -21,32 +18,42 @@ alias nighton='redshift -P -O 4500'
 # Toggles night mode off (restore regular color tone)
 alias nightoff='redshift -P -O 6500'
 
-# Displays the current Git branch and the amount of untracked/uncommitted changes
-get_git_info() {
-    BRANCH="$(git symbolic-ref --short HEAD 2> /dev/null)"
+print_prompt_git_info() {
+    BRANCH_OR_TAG="$(git symbolic-ref --short HEAD 2> /dev/null || \
+        git describe --exact-match HEAD 2> /dev/null)"
 
-    if [ -n "$BRANCH" ]; then
-        STATUS="$(git status --porcelain | wc -l)"
+    if [ -n "$BRANCH_OR_TAG" ]; then
+        echo -n "%B%F{magenta}$BRANCH_OR_TAG%f%b" # Print working branch or tag
+        CHANGES="$(git status --porcelain | wc -l)"
 
-        if [ "$STATUS" -eq "0" ]; then
-            echo -n "%F{green}%B(${BRANCH})%b%f "
-        else
-            echo -n "%F{yellow}%B(${BRANCH}%b*${STATUS}%B)%b%f "
+        if [ "$CHANGES" -ne "0" ]; then
+            echo -n "%B%F{yellow}*%f%b" # Indicator for uncommitted changes
         fi
+
+        echo -n " "
     fi
 }
 
-# Displays non-zero exit codes
-get_exit_code() {
-    case "$?" in
-        0)
-            echo ""
-            ;;
-        *)
-            echo "%F{red}%B$?%b%f "
-            ;;
-    esac
+print_prompt_symbol() {
+    # Set prompt arrow color based on the exit code returned by the last command
+    # that was ran in the shell
+    if [ "$1" -eq "0" ]; then
+        echo -n "%B%F{green}"
+    else
+        echo -n "%B%F{red}"
+    fi
+
+    echo -n "➜ %f%b"
 }
+
+print_prompt() {
+    EXIT_CODE="$?" # Save last command's exit code
+    echo -n "%B%F{cyan}%~%f%b " # Print working directory
+    print_prompt_git_info
+    print_prompt_symbol "$EXIT_CODE"
+}
+
+PROMPT='$(print_prompt)'
 
 precmd() {
     RPROMPT=''
@@ -61,8 +68,6 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-PROMPT='$(get_exit_code)%B%F{cyan}%~%f%b $(get_git_info)%B➜%b '
 
 # Keybindings
 bindkey -v # Enable Vi emulation
