@@ -1,9 +1,9 @@
-setopt no_nullglob
-setopt no_nomatch
-setopt PROMPT_SUBST
 setopt histignorealldups
+setopt menucomplete
+setopt promptsubst
 setopt sharehistory
-setopt menu_complete
+setopt no_nomatch
+setopt no_nullglob
 
 export KEYTIMEOUT=1
 export VISUAL=code
