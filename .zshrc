@@ -1,4 +1,5 @@
 setopt histignorealldups
+setopt interactivecomments
 setopt menucomplete
 setopt promptsubst
 setopt sharehistory
