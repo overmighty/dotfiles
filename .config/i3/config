@@ -132,22 +132,28 @@ client.focused_inactive $unfocused  $unfocused  $foreground $unfocused  $unfocus
 client.unfocused        $unfocused  $unfocused  $foreground $unfocused  $unfocused
 client.urgent           $urgent     $urgent     $foreground $urgent     $urgent
 
+# Use 16-pixel inner gaps between windows
 gaps inner 16
 
+# Use 1-pixel borders for all windows
 for_window [class="^.*"] border pixel 1
+# Use floating mode for Minecraft by default
 for_window [title="Minecraft *"] floating enable
 # Disable window borders for pinned flameshot screenshots
 for_window [class="flameshot"] border pixel 0
 
+# Set wallapper
 exec_always --no-startup-id feh --bg-fill $HOME/wallpaper.jpg
-exec --no-startup-id compton --config $HOME/.config/compton.conf
-exec --no-startup-id polybar -r bar
-exec --no-startup-id dunst
-exec --no-startup-id udiskie
 
-# Keybinds
-bindsym $mod+d       exec --no-startup-id rofi -show drun # Start rofi (application launcher)
+# Start important programs
+exec --no-startup-id compton        # Start compton (compositor)
+exec --no-startup-id polybar -r bar # Start polybar (status bar)
+exec --no-startup-id dunst          # Start dunst (notification daemon)
+exec --no-startup-id udiskie        # Start udiskie (disk automounter)
+
+# Extra keybinds
 bindsym Print        exec --no-startup-id flameshot gui   # Start flameshot (screenshot tool)
-bindsym $mod+s       exec --no-startup-id pamixer -i 5    # Increment sound volume by 5%
-bindsym $mod+Shift+s exec --no-startup-id pamixer -d 5    # Decrement sound volume by 5%
-bindsym $mod+x       exec --no-startup-id pamixer -t      # Toggle mute
+bindsym $mod+d       exec --no-startup-id rofi -show drun # Start rofi (application launcher)
+bindsym $mod+s       exec --no-startup-id pamixer -i 5    # Increase audio volume by 5%
+bindsym $mod+Shift+s exec --no-startup-id pamixer -d 5    # Decrease audio volume by 5%
+bindsym $mod+x       exec --no-startup-id pamixer -t      # Toggle audio mute
