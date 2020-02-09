@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This is from the default xinitrc file located in /etc/X11/xinit/
+# From the default xinitrc file located in /etc/X11/xinit
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
         [ -x "$f" ] && . "$f"

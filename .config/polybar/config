@@ -16,21 +16,24 @@ radius = 0.0
 
 line-size = 1
 
-padding-left = 1
-padding-right = 2
+padding-left = 3
+padding-right = 4
 
-module-margin = 1
+module-margin = 2
 
-font-0 = monospace:pixelsize=10
-font-1 = Font Awesome 5 Free Solid:pixelsize=10
+font-0 = sans-serif:size=12
+font-1 = Font Awesome 5 Free Solid:size=12
 
 modules-left = workspaces focused_window_title
 modules-center = cpu memory disk
-modules-right = network volume date
-
-separator = %{F#4a4a4a}|%{F-}
+modules-right = battery network volume date
 
 locale = en_US.UTF-8
+
+tray-position = none
+tray-maxsize = 24
+tray-offset-x = -12
+tray-offset-y = -6
 
 enable-ipc = true
 
@@ -48,25 +51,25 @@ reverse-scroll = false
 
 format = <label-state> <label-mode>
 
-label-mode = %{F#4a4a4a}|%{F-} %{F#bcecff}%mode%%{F-}
+label-mode = %{F#bcecff}  %mode%%{F-}
 
 label-focused = %name%
 label-focused-foreground = ${colors.focused}
 label-focused-underline = ${colors.focused}
-label-focused-padding = 1
+label-focused-padding = 2
 
 label-unfocused = %name%
 label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 
 label-visible = %name%
 label-visible-foreground = ${colors.foreground}
-label-visible-padding = 1
+label-visible-padding = 2
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.urgent}
 label-urgent-underline = ${colors.urgent}
-label-urgent-padding = 1
+label-urgent-padding = 2
 
 [module/focused_window_title]
 type = internal/xwindow
@@ -88,11 +91,37 @@ mount-0 = /
 interval = 10
 label-mounted = %free%
 
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = AC0
+
+format-charging = <label-charging>  <animation-charging>
+format-discharging = <label-discharging>  <ramp-capacity>
+format-full = <label-full>  
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 500
+
 [module/network]
 type = internal/network
-interface = wlp5s0
+interface = wlp1s0
 format-connected = 
-label-disconnected = 
+label-disconnected = 
 
 [module/volume]
 type = internal/pulseaudio
@@ -100,7 +129,7 @@ type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1b.0.analog-stereo
 use-ui-max = false
 
-format-volume = <label-volume> <ramp-volume>
+format-volume = <label-volume>  <ramp-volume>
 
 label-muted = 
 
@@ -117,4 +146,4 @@ date-alt = %A, %B %e, %Y
 time = %H:%M
 time-alt = %H:%M:%S
 
-label = %date% %{F#4a4a4a}| %{F-}%time%
+label = %date%   %time%

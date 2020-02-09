@@ -1,0 +1,12 @@
+set default-fg "#FFFFFF"
+set default-bg "#1A1A1A"
+
+set font "monospace normal 18"
+
+set statusbar-fg "#FFFFFF"
+set statusbar-bg "#1A1A1A"
+
+set recolor true
+set recolor-darkcolor  "#FFFFFF"
+set recolor-lightcolor "#1A1A1A"
+set recolor-keephue    true

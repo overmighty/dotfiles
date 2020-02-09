@@ -134,26 +134,34 @@ client.urgent           $urgent     $urgent     $foreground $urgent     $urgent
 
 # Use 16-pixel inner gaps between windows
 gaps inner 16
+gaps outer -16
+gaps bottom -6
+smart_gaps inverse_outer
 
 # Use 1-pixel borders for all windows
 for_window [class="^.*"] border pixel 1
-# Use floating mode for Minecraft by default
-for_window [title="Minecraft *"] floating enable
+
 # Disable window borders for pinned flameshot screenshots
 for_window [class="flameshot"] border pixel 0
+
+# Use floating mode for Minecraft by default
+for_window [title="Minecraft *"] floating enable
 
 # Set wallapper
 exec_always --no-startup-id feh --bg-fill $HOME/wallpaper.jpg
 
-# Start important programs
-exec --no-startup-id compton        # Start compton (compositor)
-exec --no-startup-id polybar -r bar # Start polybar (status bar)
-exec --no-startup-id dunst          # Start dunst (notification daemon)
-exec --no-startup-id udiskie        # Start udiskie (disk automounter)
+# Start essential programs
+exec --no-startup-id picom
+exec --no-startup-id polybar -r bar
+exec --no-startup-id dunst
+exec --no-startup-id udiskie
 
 # Extra keybinds
-bindsym Print        exec --no-startup-id flameshot gui   # Start flameshot (screenshot tool)
-bindsym $mod+d       exec --no-startup-id rofi -show drun # Start rofi (application launcher)
-bindsym $mod+s       exec --no-startup-id pamixer -i 5    # Increase audio volume by 5%
-bindsym $mod+Shift+s exec --no-startup-id pamixer -d 5    # Decrease audio volume by 5%
-bindsym $mod+x       exec --no-startup-id pamixer -t      # Toggle audio mute
+bindsym Print                 exec --no-startup-id flameshot gui
+bindsym $mod+d                exec --no-startup-id $HOME/proxy.sh rofi -show drun
+bindsym $mod+l                exec --no-startup-id $HOME/lock.sh
+bindsym XF86AudioMute         exec --no-startup-id pamixer -t
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume  exec --no-startup-id pamixer -d 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
