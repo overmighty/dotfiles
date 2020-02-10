@@ -32,6 +32,13 @@ directories in your home directory, and only symlink actual files.
 - App launcher: [Rofi](https://github.com/davatorium/rofi)
 - Screen locker: [i3lock-color](https://github.com/PandorasFox/i3lock-color)
 
+#### Fonts
+
+- Sans-serif font: [Noto Sans](https://www.google.com/get/noto/)
+- Serif font: [Noto Serif](https://www.google.com/get/noto/)
+- Monospace font: [Consolas](https://aur.archlinux.org/packages/consolas-font)
+- Icon font for bar: [Font Awesome](https://fontawesome.com/)
+
 #### Command-line
 
 - Shell: [Zsh](https://github.com/zsh-users/zsh)
