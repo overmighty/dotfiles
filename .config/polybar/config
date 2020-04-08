@@ -74,7 +74,7 @@ label-urgent-padding = 2
 [module/focused_window_title]
 type = internal/xwindow
 label = %title%
-label-maxlen = 30
+label-maxlen = 50
 
 [module/cpu]
 type = internal/cpu
