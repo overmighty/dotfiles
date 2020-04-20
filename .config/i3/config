@@ -151,7 +151,7 @@ for_window [title="Minecraft *"] floating enable
 exec_always --no-startup-id feh --bg-fill $HOME/wallpaper.jpg
 
 # Start essential programs
-exec --no-startup-id picom
+exec --no-startup-id picom --experimental-backends
 exec --no-startup-id polybar -r bar
 exec --no-startup-id dunst
 exec --no-startup-id udiskie
