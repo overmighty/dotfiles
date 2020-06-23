@@ -1,0 +1,127 @@
+#
+# WM-independent hotkeys
+#
+
+# Terminal emulator
+super + Return
+	alacritty
+
+# Program launcher
+super + d
+	rofi -show drun
+
+# Reload sxhkd config files
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Take screenshot
+Print
+	flameshot gui
+
+# Lock screen
+super + l
+	lock.sh
+
+#
+# Media keys
+#
+
+XF86AudioMute
+	pamixer -t
+
+XF86AudioLowerVolume
+	pamixer -d 5
+
+XF86AudioRaiseVolume
+	pamixer -i 5
+
+XF86MonBrightnessDown
+	light -U 5
+
+XF86MonBrightnessUp
+	light -A 5
+
+#
+# bspwm hotkeys
+#
+
+# Quit/Restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# Close/Kill focused window
+super + {_,shift + }q
+	bspc node -{c,k}
+
+#
+# state/flags
+#
+
+# Toggle between pseudo-tiled and tiled
+super + shift + t
+	bspc node -t {pseudo_tiled,tiled}
+
+# Toggle between floating and tiled
+super + shift + space
+	bspc node -t {floating,tiled}
+
+# Toggle between fullscreen and tiled
+super + f
+	bspc node -t {fullscreen,tiled}
+
+# Set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# Focus/Move
+#
+
+# Focus the node in the given direction
+super + {Left,Down,Up,Right}
+	bspc node -f {west,south,north,east}
+
+# Move the node to the given direction
+super + shift + {Left,Down,Up,Right}
+        args=({-20 0 west,0 20 south,0 -20 north,20 0 east}); \
+        bspc node -v "${args[1]}" "${args[2]}" || bspc node -s "${args[3]}"
+
+# Focus/Send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+#
+# Preselect
+#
+
+# Preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Cancel the preselection for the focused node
+super + ctrl + Escape
+	bspc node -p cancel
+
+# Cancel the preselection for the focused desktop
+super + ctrl + shift + Escape
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# Resize
+#
+
+# Expand a window by moving one of its side outward
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}

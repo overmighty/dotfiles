@@ -1,8 +1,12 @@
+configuration {
+    show-icons: true;
+}
+
 * {
     background:                  #1a1a1a;
     foreground:                  #ffffff;
 
-    normal-background:           #00000000;
+    normal-background:           transparent;
     normal-foreground:           @foreground;
     selected-normal-background:  #bcecff20;
     selected-normal-foreground:  #bcecff;
@@ -24,7 +28,7 @@
     alternate-active-foreground: @active-foreground;
 
     separatorcolor:              #bcecff;
-    background-color:            #00000000;
+    background-color:            transparent;
     border-color: @selected-normal-foreground;
 }
 
@@ -33,8 +37,8 @@ window {
     border:           1;
     font:             "sans-serif 14";
     fullscreen:       false;
-    padding:          24;
-    width:            600;
+    padding:          1em;
+    width:            600px;
 }
 
 mainbox {
@@ -53,7 +57,7 @@ textbox {
 }
 
 listview {
-    padding:      2px 0px 0px;
+    padding:      10px 0px 0px 0px;
     scrollbar:    false;
     border-color: @separatorcolor;
     spacing:      2px;

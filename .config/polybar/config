@@ -1,16 +1,19 @@
 [colors]
+background = #00000000
+foreground = #ffffff
 focused = #bcecff
 urgent = #ffdb9e
-foreground = #ffffff
 
 [bar/bar]
 bottom = true
 
 width = 100%
-height = 30
+height = 36
 
-background = #00000000
+background = ${colors.background}
 foreground = ${colors.foreground}
+
+wm-restack = bspwm
 
 radius = 0.0
 
@@ -21,57 +24,47 @@ padding-right = 4
 
 module-margin = 2
 
-font-0 = sans-serif:size=12
-font-1 = Font Awesome 5 Free Solid:size=12
+font-0 = sans-serif:size=12;3
+font-1 = Font Awesome 5 Free Solid:size=12;3
 
-modules-left = workspaces focused_window_title
+modules-left = bspwm-desktops window-title
 modules-center = cpu memory disk
-modules-right = battery network volume date
+modules-right = battery network pulseaudio-volume keyboard-layout date-and-time
 
 locale = en_US.UTF-8
 
 tray-position = none
 tray-maxsize = 24
-tray-offset-x = -12
-tray-offset-y = -6
+tray-offset-x = -8
+tray-offset-y = 0
 
 enable-ipc = true
 
 [settings]
 screenchange-reload = true
 
-[module/workspaces]
-type = internal/i3
+[module/bspwm-desktops]
+type = internal/bspwm
 
-index-sort = true
-
-enable-scroll = false
-wrapping-scroll = false
-reverse-scroll = false
-
-format = <label-state> <label-mode>
-
-label-mode = %{F#bcecff}  %mode%%{F-}
+format = <label-state>
 
 label-focused = %name%
 label-focused-foreground = ${colors.focused}
 label-focused-underline = ${colors.focused}
 label-focused-padding = 2
 
-label-unfocused = %name%
-label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 2
-
-label-visible = %name%
-label-visible-foreground = ${colors.foreground}
-label-visible-padding = 2
+label-occupied = %name%
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 2
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.urgent}
 label-urgent-underline = ${colors.urgent}
 label-urgent-padding = 2
 
-[module/focused_window_title]
+label-empty =
+
+[module/window-title]
 type = internal/xwindow
 label = %title%
 label-maxlen = 50
@@ -123,7 +116,7 @@ interface = wlp1s0
 format-connected = 
 label-disconnected = 
 
-[module/volume]
+[module/pulseaudio-volume]
 type = internal/pulseaudio
 
 sink = alsa_output.pci-0000_00_1b.0.analog-stereo
@@ -137,7 +130,12 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-[module/date]
+[module/keyboard-layout]
+type = internal/xkeyboard
+
+format = <label-layout>
+
+[module/date-and-time]
 type = internal/date
 
 date = %a, %b %e

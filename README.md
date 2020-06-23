@@ -25,7 +25,7 @@ directories in your home directory, and only symlink actual files.
 
 #### Graphical environment
 
-- Window manager: [i3-gaps](https://github.com/Airblader/i3)
+- Window manager: [bspwm](https://github.com/baskerville/bspwm)
 - Compositor: [picom](https://github.com/yshui/picom)
 - Bar: [Polybar](https://github.com/polybar/polybar)
 - Notification daemon: [Dunst](https://github.com/dunst-project/dunst)
@@ -64,4 +64,4 @@ directories in your home directory, and only symlink actual files.
 - Cursor theme: [Capitaine cursors](https://github.com/keeferrourke/capitaine-cursors)
 - [Wallpaper](https://unsplash.com/photos/ybw-0_Hfk1I)
 
-![Visual Studio Code, Zsh prompt, and Firefox Developer Edition](./screenshots/desktop2.png)
+![Visual Studio Code, Firefox Developer Edition, and Zsh prompt](./screenshots/desktop2.png)

@@ -1,3 +1,4 @@
+# Options
 setopt histignorealldups
 setopt interactivecomments
 setopt menucomplete
@@ -6,51 +7,57 @@ setopt sharehistory
 setopt no_nomatch
 setopt no_nullglob
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.yarn/bin"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
-export XDG_CONFIG_HOME="$HOME/.config"
+# Exports
+export PATH="${PATH}:${HOME}/.local/bin:${HOME}/go/bin"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export CCACHE_DIR="${XDG_CACHE_HOME}/ccache"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 export KEYTIMEOUT=1
 export VISUAL=nvim
 export EDITOR=nvim
 
-source $HOME/proxy.sh
-export_proxy
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
+# Aliases
 alias diff='diff --color=auto'
-
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 alias nighton='redshift -P -O 4000'
 alias nightoff='redshift -P -O 6500'
 
-# `mkdir` and `cd` combined.
+# More aliases
+
 mkcd() {
-    mkdir "$1"
-    cd "$1"
+    mkdir "$1" && cd "$1"
 }
+
+yt() {
+    mpv ytdl://"$1"
+}
+
+# Prompt
 
 print_prompt_git_info() {
     local branch_or_tag="$(git symbolic-ref --short HEAD 2> /dev/null || \
         git describe --exact-match HEAD 2> /dev/null)"
 
-    if [ -n "$branch_or_tag" ]; then
-        # Print working branch or tag
-        echo -n "%B%F{magenta}$branch_or_tag%f%b"
-
-        local changes="$(git status --porcelain | wc -l)"
-
-        if [ "$changes" -ne "0" ]; then
-            # Indicator for uncommitted changes
-            echo -n "%B%F{yellow}*%f%b"
-        fi
-
-        echo -n " "
+    if [ -z "${branch_or_tag}" ]; then
+        return
     fi
+
+    echo -n "%B%F{magenta}${branch_or_tag}%b%f"
+
+    local change_count="$(git status --porcelain | wc -l)"
+
+    if [ "${change_count}" -gt "0" ]; then
+        echo -n "%B%F{yellow}*%b%f"
+    fi
+
+    echo -n " "
 }
 
 print_prompt_symbol() {
-    # Set prompt arrow color based on the exit code returned by the last command
-    # that was run in the shell
     if [ "$1" -eq "0" ]; then
         echo -n "%B%F{green}"
     else
@@ -61,15 +68,14 @@ print_prompt_symbol() {
 }
 
 print_prompt() {
-    # Save last command's exit code
     local exit_code="$?"
-    # Print working directory
     echo -n "%B%F{cyan}%~%f%b "
     print_prompt_git_info
-    print_prompt_symbol "$exit_code"
+    print_prompt_symbol "${exit_code}"
 }
 
 PROMPT='$(print_prompt)'
+VI_NORMAL_MODE_PROMPT="%B-- NORMAL --%b"
 
 precmd() {
     RPROMPT=''
@@ -77,7 +83,6 @@ precmd() {
 
 # Use the right prompt as an indicator for the Vi normal mode
 function zle-line-init zle-keymap-select {
-    VI_NORMAL_MODE_PROMPT="%B-- NORMAL --%b"
     RPROMPT='${${KEYMAP/vicmd/$VI_NORMAL_MODE_PROMPT}/(main|viins)/}'
     zle reset-prompt
 }
@@ -95,8 +100,8 @@ bindkey "^[[F"    end-of-line                       # End
 bindkey "^[[6~"   down-line-or-history              # Page Down
 bindkey "^[[A"    history-beginning-search-backward # Up arrow
 bindkey "^[[B"    history-beginning-search-forward  # Down arrow
-bindkey "^[[1;5C" forward-word                      # Ctrl + Left arrow
-bindkey "^[[1;5D" backward-word                     # Ctrl + Right arrow
+bindkey "^[[1;5C" forward-word                      # Ctrl+Left arrow
+bindkey "^[[1;5D" backward-word                     # Ctrl+Right arrow
 
 # Keep 50000 lines of history within the shell and save it to ~/.zsh_history
 HISTSIZE=50000
@@ -125,5 +130,5 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Enable auto-completions
+# Enable auto-suggestions based on command history
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

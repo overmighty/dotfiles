@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Startup commands
+xsetroot -cursor_name left_ptr &
+feh --bg-fill "${HOME}/wallpaper.jpg" &
+pidof -sx picom || picom --experimental-backends &
+pidof -sx polybar || polybar -r bar &
+pidof -sx sxhkd || sxhkd &
+pidof -sx udiskie || udiskie &
+pidof -sx dunst || dunst &
+
+# Initialize desktops
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# Global settings
+bspc config normal_border_color    "#4a4a4a"
+bspc config active_border_color    "#848484"
+bspc config focused_border_color   "#bcecff"
+bspc config split_ratio            0.52
+bspc config borderless_monocle     false
+bspc config gapless_monocle        true
+bspc config single_monocle         true
+bspc config pointer_modifier       mod4
+bspc config pointer_action1        move
+bspc config pointer_action2        resize_corner
+bspc config focus_follows_pointer  true
+
+# Desktop settings
+bspc config window_gap 16
+
+# Node settings
+bspc config border_width 1
+
+# Rules
+bspc rule -a flameshot border=off
