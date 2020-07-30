@@ -1,7 +1,7 @@
 <div align="center">
     <h1>Dotfiles</h1>
     <blockquote>
-        <p>OverMighty's Arch Linux dotfiles.</p>
+        <p>My Arch Linux dotfiles.</p>
     </blockquote>
 </div>
 
@@ -29,7 +29,7 @@ directories in your home directory, and only symlink actual files.
 - Compositor: [picom](https://github.com/yshui/picom)
 - Bar: [Polybar](https://github.com/polybar/polybar)
 - Notification daemon: [Dunst](https://github.com/dunst-project/dunst)
-- App launcher: [Rofi](https://github.com/davatorium/rofi)
+- Program launcher: [Rofi](https://github.com/davatorium/rofi)
 - Screen locker: [i3lock-color](https://github.com/PandorasFox/i3lock-color)
 
 #### Fonts
@@ -52,7 +52,7 @@ directories in your home directory, and only symlink actual files.
 
 #### Miscellaneous
 
-- Web browser: [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/)
+- Web browser: [Chromium](https://github.com/chromium/chromium)
 - File manager: [ranger](https://github.com/ranger/ranger)
 - Document viewer: [zathura](https://github.com/pwmt/zathura)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
